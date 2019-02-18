@@ -39,7 +39,7 @@ If you have feedback about the exercise, please include it.
 ```
     {
       "characters": [
-        {
+        v{
           "name": "Luke Skywalker",
           "url": "https://swapi.co/api/people/1/"
         },

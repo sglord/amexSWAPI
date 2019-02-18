@@ -1,24 +1,16 @@
 language: node_js
 node_js:
-  - node # uses most recent stable node version
-services:
-  - postgresql # starts up postgres
-addons:
-  postgresql: '9.6' # highest available postgres version on Travis
-dist: trusty # uses trusty environment
-sudo: false # when on trusty, uses Docker containers for speed
-notifications:
-  email:
-    on_success: change # default: change (only when going from broken to fixed)
-    on_failure: always # default: always (which is annoying, as it should be)
+  - node
+dist: trusty
+sudo: false
 install:
-  - npm ci # faster, goes only from package-lock
+  - npm ci
 before_deploy:
-  - npm run build-client # make the bundle
-  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+  - npm run build-client
+  - rm -rf node_modules
 deploy:
-  skip_cleanup: true # prevents travis from deleting the build
+  skip_cleanup: true
   provider: heroku
-  app: https://amexswapi.herokuapp.com/ # see README
+  app: https://amexswapi.herokuapp.com/
   api_key:
-    secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+    secure: 8d56d1af-7761-416f-818e-3214e82d4a84
