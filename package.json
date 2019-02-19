@@ -11,7 +11,8 @@
 		"deploy": "script/deploy",
 		"heroku-token": "script/encrypt-heroku-auth-token",
 		"start": "node main.js",
-		"start-dev": "webpack -w & nodemon main.js -e html,js,css --ignore public"
+		"start-dev": "webpack -w & nodemon main.js -e html,js,css --ignore public",
+		"build-client": "webpack"
 	},
 	"dependencies": {
 		"axios": "^0.15.3",
