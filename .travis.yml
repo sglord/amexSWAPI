@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+dist: trusty
+sudo: false
+install:
+  - npm ci
+before_deploy:
+  - npm run build-client
+  - rm -rf node_modules
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: amexswapi
+  api_key:
+    secure: ebBoA9QWtmdqgUCmmu4iDQ5uzfeeEBzes+zUKeX/7MKVnxk+wrMus87WVEzp+38LirYLUGaX9iVaLvyml1SYSXcqFR7mYKE8riJObBlyE8XFfOckQi6bzwZIToBsQrm8KhNllDvi03JAdGY/H3JzEIez+SF3F8tSZOZ8Ux3DM5Af8c8ZpQDGrINdiBAVL9n10OsPyr2XuZAf20msTwICX0QJPBNIVEkhqRX2h5SzilLrHNCKrivZ+MnXaFf3MYREqpKwEEW0LKcN83UqnU0gRdH9oXOaB/37jixMUUzRlcBt4BDnRrDvCA9U3rnK83U5m9O9bBmG6Sul8XZFuP0wmly4Q4TdK/amUx8pIc+vtgrlIvQp3RBCMvubC4inriAnMh/C+EuYarEatbJsMK0LxF/rsgnm8NIk/GtHOEvSdpAO6zRu033Aw9UGs25gSbfVKQ+33ugub383iL4NmgUpP6q2EL4keR9m5qRcB0PWksInDBNbHLGicWX64kq981p4Isbhx0enVdvFNWe21VtbRRnu3p1uF0KVrGYknQrUAya6mEuMb72/AnjWz0hHlEmTdcQOfmltoSQi0umIyDyWAjm2dRBQUfWBJocIfCsB5b0Uaew4WyJEEWLHgg4r97W5I5yLDPDwA+b1KJhpJ52YyYNmKlM47MaiyGg5nBECt+I=
