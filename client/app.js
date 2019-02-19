@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import CharacterList from './components/CharacterList';
+import Navbar from './components/Navbar';
 const App = () => (
 	<div>
 		<Navbar />
