@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const getFilmData = async filmsArr => {
 	let unloadedFilms = [];
 	let loadedFilms = [];
@@ -9,9 +11,10 @@ const getFilmData = async filmsArr => {
 			filmData = data;
 		} catch (error) {
 			unloadedFilms.push(error);
-			continue;
+			// continue;
 		}
-		loadedFilms.push(filmData.title);
+
+		loadedFilms.push(filmData);
 	}
 
 	if (!loadedFilms.length) {

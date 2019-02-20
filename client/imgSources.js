@@ -1,4 +1,4 @@
-let links = {
+let characterImages = {
 	'Luke Skywalker':
 		'https://i.pinimg.com/originals/e5/7c/db/e57cdba4e5f6c01553c025496df977c4.jpg',
 	'Darth Vader': 'http://i.imgur.com/CHNJ1tY.jpg',
@@ -10,7 +10,7 @@ let links = {
 
 const imageFunc = name => {
 	console.log(name);
-	return links[`${name}`];
+	return characterImages[`${name}`];
 };
 
 module.exports = imageFunc;

@@ -47,6 +47,14 @@ export const fetchCharacters = () => async dispatch => {
 	}
 };
 
+export const fetchSingleCharacter = charId => async dispatch => {
+	dispatch(getCharacters());
+	try {
+    const { data } = await axios.get(`/api/characters/${charId}`);
+    
+	} catch (error) {}
+};
+
 let initialState = {
 	characters: [],
 	selectedCharacter: {},
@@ -56,9 +64,10 @@ let initialState = {
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case GET_CHARACTERS:
-			return { characters: [], isLoading: action.isLoading };
+			return { ...state, isLoading: action.isLoading };
 		case CHARACTER_SUCCESS:
 			return {
+				...state,
 				characters: action.characters,
 				isLoading: action.isLoading
 			};
