@@ -50,8 +50,9 @@ export const fetchCharacters = () => async dispatch => {
 export const fetchSingleCharacter = charId => async dispatch => {
 	dispatch(getCharacters());
 	try {
-    const { data } = await axios.get(`/api/characters/${charId}`);
-    
+		const { data } = await axios.get(`/api/characters/${charId}`);
+		console.log(data);
+		dispatch(getSingleCharacter(data));
 	} catch (error) {}
 };
 

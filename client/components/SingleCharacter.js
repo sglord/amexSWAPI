@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCharacters } from '../store/characterReducer';
+import {
+	fetchCharacters,
+	fetchSingleCharacter
+} from '../store/characterReducer';
 import { Loader, Dimmer, Grid } from 'semantic-ui-react';
 
 class SingleCharacter extends Component {
@@ -24,7 +27,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchCharacters: () => dispatch(fetchCharacters())
+		fetchSingleCharacter: () => dispatch(fetchSingleCharacter())
 	};
 };
 

@@ -9,7 +9,6 @@ let characterImages = {
 };
 
 const imageFunc = name => {
-	console.log(name);
 	return characterImages[`${name}`];
 };
 

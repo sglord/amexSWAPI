@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import CharacterList from './components/CharacterList';
-// import SingleCharacter from './components/SingleCharacter';
+import SingleCharacter from './components/SingleCharacter';
 
 class Routes extends Component {
 	componentDidMount() {}
@@ -9,7 +9,7 @@ class Routes extends Component {
 	render() {
 		return (
 			<Switch>
-				<Route path="/" component={CharacterList} />
+				<Route exact path="/" component={CharacterList} />
 				<Route exact path="/characters" component={CharacterList} />
 				<Route path="/characters/:id" component={SingleCharacter} />
 			</Switch>
@@ -17,4 +17,4 @@ class Routes extends Component {
 	}
 }
 
-export default Routes;
+export default withRouter(Routes);

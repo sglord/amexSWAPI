@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { Card, Image, Divider } from 'semantic-ui-react';
 import imageFunc from '../imgSources';
 
 const CharacterCard = props => (
 	<Card
-		// as={Link}
-		// to={'/'}
+		as={Link}
+		to={`/characters/${props.char.id}`}
 		link
 		fluid
 		raised
