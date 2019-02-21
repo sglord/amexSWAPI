@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { grabIdFromUrl } from '../../helperFunctions';
 
 const LOAD_FILMS = 'LOAD_FILMS';
 const FILM_SUCCESS = 'FILM_SUCCESS';

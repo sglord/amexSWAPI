@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-	Button,
-	Container,
-	Image,
-	Header,
-	Segment,
-	Grid
-} from 'semantic-ui-react';
+import { Button, Image, Header, Segment, Grid } from 'semantic-ui-react';
 import imageFunc from '../imgSources';
 import FilmList from './FilmList';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCharacterFilms } from '../store/filmReducer';
-import { Loader, Dimmer, Grid } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import FilmCard from './FilmCard';
 

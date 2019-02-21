@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Loader, Dimmer, Grid } from 'semantic-ui-react';
+import React, from 'react';
+import { Grid } from 'semantic-ui-react';
 
 import CharacterCard from './CharacterCard';
 

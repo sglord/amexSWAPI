@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Image, Divider } from 'semantic-ui-react';
-import imageFuncFilm from '../imgSources';
+import { Card, Divider } from 'semantic-ui-react';
 
 const FilmCard = props => (
 	<Card fluid raised color="black">

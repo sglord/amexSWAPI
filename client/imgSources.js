@@ -12,8 +12,4 @@ const imageFunc = name => {
 	return characterImages[`${name}`];
 };
 
-const imageFuncFilm = () => {
-	return 'https://i.pinimg.com/236x/af/bf/be/afbfbec6432f2da2b7db03eb751bdd42--trading-cards-jedi-knight.jpg?b=t';
-};
-
 module.exports = imageFunc;
