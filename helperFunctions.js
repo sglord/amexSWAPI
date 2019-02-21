@@ -3,15 +3,13 @@ const axios = require('axios');
 const getFilmData = async filmsArr => {
 	let unloadedFilms = [];
 	let loadedFilms = [];
-	let filmData;
 
 	for (let film of filmsArr) {
 		try {
 			let { data } = await axios.get(`${film}`);
-			filmData = data;
+				
 		} catch (error) {
 			unloadedFilms.push(error);
-			// continue;
 		}
 
 		loadedFilms.push(filmData);

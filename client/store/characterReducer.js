@@ -1,28 +1,21 @@
 import axios from 'axios';
 import { grabIdFromUrl } from '../../helperFunctions';
 
-const GET_CHARACTERS = 'GET_CHARACTERS';
-const CHARACTER_SUCCESS = 'CHARACTER_SUCCESS';
+const LOAD_CHARACTERS = 'LOAD_CHARACTERS';
+const GET_ALL_CHARACTERS = 'GET_ALL_CHARACTERS';
 const CHARACTER_FAILURE = 'CHARACTER_FAILURE';
 const GET_SINGLE_CHARACTER = 'GET_SINGLE_CHARACTER';
-// single failure handle
+const REMOVE_SELECTED_CHARACTER = 'REMOVE_SELECTED_CHARACTER';
+const CLEAR_ERROR = 'CLEAR_ERROR';
 
-const getCharacters = () => ({
-	type: GET_CHARACTERS,
+const loadCharacters = () => ({
+	type: LOAD_CHARACTERS,
 	isLoading: true
 });
 
-const charactersSuccess = characters => ({
-	type: CHARACTER_SUCCESS,
-	isLoading: false,
+const getAllCharacters = characters => ({
+	type: GET_ALL_CHARACTERS,
 	characters
-});
-
-const charactersFailure = error => ({
-	type: CHARACTER_FAILURE,
-	isLoading: false,
-	error: 'Failure to fetch characters',
-	payload: error
 });
 
 const getSingleCharacter = selectedCharacter => ({
@@ -30,65 +23,90 @@ const getSingleCharacter = selectedCharacter => ({
 	selectedCharacter
 });
 
+const charactersFailure = error => ({
+	type: CHARACTER_FAILURE,
+	isLoading: false,
+	error: 'Failed to fetch character',
+	payload: error
+});
+
+export const removeSelectedCharacter = () => ({
+	type: REMOVE_SELECTED_CHARACTER
+});
+
+export const clearError = () => ({
+	type: CLEAR_ERROR
+});
+
 export const fetchCharacters = () => async dispatch => {
-	dispatch(getCharacters());
+	dispatch(loadCharacters());
 	try {
 		const { data } = await axios.get('/api/characters');
-		console.log(data.characters);
 		let characters = data.characters.map(character => ({
-			name: character.name,
-			url: character.url,
+			...character,
 			id: grabIdFromUrl(character.url)
 		}));
-		console.log(characters);
-		dispatch(charactersSuccess(characters));
+		dispatch(getAllCharacters(characters));
 	} catch (error) {
 		dispatch(charactersFailure(error));
 	}
 };
 
 export const fetchSingleCharacter = charId => async dispatch => {
-	dispatch(getCharacters());
+	dispatch(loadCharacters());
 	try {
 		const { data } = await axios.get(`/api/characters/${charId}`);
-		console.log(data);
-		dispatch(getSingleCharacter(data));
-	} catch (error) {}
+		let character = {
+			...data,
+			id: charId
+		};
+
+		dispatch(getSingleCharacter(character));
+	} catch (error) {
+		dispatch(charactersFailure(error));
+	}
 };
 
 let initialState = {
 	characters: [],
-	selectedCharacter: {},
-	isLoading: false
+	selectedCharacter: null,
+	isLoading: false,
+	error: null
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case GET_CHARACTERS:
+		case LOAD_CHARACTERS:
 			return { ...state, isLoading: action.isLoading };
-		case CHARACTER_SUCCESS:
+		case GET_ALL_CHARACTERS:
 			return {
 				...state,
 				characters: action.characters,
-				isLoading: action.isLoading
+				isLoading: false
 			};
 		case GET_SINGLE_CHARACTER:
 			return {
 				...state,
-				selectedCharacter: action.selectedCharacter
+				selectedCharacter: action.selectedCharacter,
+				isLoading: false
+			};
+		case REMOVE_SELECTED_CHARACTER:
+			return {
+				...state,
+				selectedCharacter: null
+			};
+		case CHARACTER_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.error
+			};
+		case CLEAR_ERROR:
+			return {
+				...state,
+				error: null
 			};
 		default:
 			return state;
 	}
 }
-
-// run the first one in component did mount and console log data and results. extract Id and add it to the data
-// need to update the character
-
-// need to combine reducers, set up store, and add function to the react components
-
-// Character list => redux GETCHARACTERS => api/characters
-// on click => redux GETSINGLECHARACTER => api/character/${char.id}/ add key from the id
-
-// need to set up redux everywhere top to bottom
-// need to finish setting up router

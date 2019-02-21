@@ -31,10 +31,9 @@ export const removeFilm = () => ({
 export const fetchCharacterFilms = charId => async dispatch => {
 	dispatch(getFilm());
 	try {
-		const { data } = await axios.get(`/api/characters/${charId}`);
+		const { data } = await axios.get(`/api/characters/${charId}/films`);
 		let films = data.map(film => ({
-			name: film.name,
-			url: film.url,
+			...film,
 			id: grabIdFromUrl(film.url)
 		}));
 		dispatch(filmSuccess(films));
