@@ -1,10 +1,10 @@
 import React from 'react';
-import CharacterList from './components/CharacterList';
 import Navbar from './components/Navbar';
+import Views from './components/Views';
 const App = () => (
 	<div>
 		<Navbar />
-		<CharacterList />
+		<Views />
 	</div>
 );
 

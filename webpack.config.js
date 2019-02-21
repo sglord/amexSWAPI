@@ -51,7 +51,7 @@ module.exports = {
 				include: resolve(__dirname, './client'),
 				loader: 'babel-loader',
 				options: {
-					presets: ['react']
+					presets: ['es2015', 'react', 'stage-2']
 				}
 			}
 		]

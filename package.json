@@ -2,20 +2,16 @@
 	"name": "amexswapi",
 	"version": "1.0.0",
 	"description": "Star Wars API code challenge",
-	"private": true,
-	"engines": {
-		"node": ">= 7.0.0"
-	},
 	"main": "main.js",
+	"author": "Stephen Lord",
 	"scripts": {
-		"deploy": "script/deploy",
-		"heroku-token": "script/encrypt-heroku-auth-token",
 		"start": "node main.js",
 		"start-dev": "webpack -w & nodemon main.js -e html,js,css --ignore public",
 		"build-client": "webpack"
 	},
 	"dependencies": {
 		"axios": "^0.15.3",
+		"babel-preset-es2015": "^6.24.1",
 		"express": "^4.16.4",
 		"heroku": "^7.19.4",
 		"morgan": "^1.9.1",
@@ -24,6 +20,7 @@
 		"react-redux": "^5.0.2",
 		"react-router-dom": "^4.3.1",
 		"redux": "^3.6.0",
+		"redux-devtools-extension": "^2.13.8",
 		"redux-logger": "^2.8.1",
 		"redux-thunk": "^2.3.0",
 		"semantic-ui-react": "^0.84.0",
@@ -31,9 +28,12 @@
 		"webpack-cli": "^3.2.3"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+		"@babel/plugin-transform-destructuring": "^7.3.2",
 		"axios-mock-adapter": "^1.15.0",
 		"babel-core": "^6.26.0",
-		"babel-loader": "^7.1.4",
+		"babel-loader": "^7.1.5",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
