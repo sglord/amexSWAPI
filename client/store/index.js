@@ -1,8 +1,3 @@
-//need a way to get all character information for the main page of character list
-// need a way to get extended info on the current character
-// need a way to get all the movie info
-// need to handle loading
-
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
