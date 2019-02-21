@@ -7,12 +7,10 @@ import FilmCard from './FilmCard';
 
 class FilmList extends Component {
 	componentDidMount() {
-		console.log(this.props);
 		this.props.fetchCharacterFilms(this.props.selectedCharacter.id);
 	}
 
 	render() {
-		console.log(this.props.films);
 		const { films } = this.props;
 		return (
 			<div>
@@ -27,11 +25,7 @@ class FilmList extends Component {
 					{films.map(film => {
 						return (
 							<Grid.Column key={film.episode_id}>
-								<FilmCard
-									key={film.episode_id}
-									film={film}
-									// handleCharacterCardClick={handleCharacterCardClick}
-								/>
+								<FilmCard key={film.episode_id} film={film} />
 							</Grid.Column>
 						);
 					})}
