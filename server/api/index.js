@@ -25,7 +25,6 @@ router.get('/characters/:id', async (req, res, next) => {
 		};
 		res.send(character);
 	} catch (error) {
-		res.status(503);
 		next(error);
 	}
 });
@@ -38,14 +37,12 @@ router.get('/characters/:id/films', async (req, res, next) => {
 		const { films } = data;
 		try {
 			let filmResponse = await getFilmData(films);
-			console.log(filmResponse, 'film response');
 			res.send(filmResponse);
 		} catch (error) {
 			console.error(error);
 			res.send('Error: Could not load films!');
 		}
 	} catch (error) {
-		res.send(error);
 		next(error);
 	}
 });

@@ -8,6 +8,7 @@ import {
 	Grid
 } from 'semantic-ui-react';
 import imageFunc from '../imgSources';
+import FilmList from './FilmList';
 
 const SingleCharacter = props => {
 	const { handleRemoveSelectedCharacter, selectedCharacter } = props;
@@ -26,27 +27,22 @@ const SingleCharacter = props => {
 			</Header>
 			<Segment attached>
 				<Grid textAlign="center" stackable celled columns={3}>
-					<Grid.Column>
-						<p>Height: {selectedCharacter.height}m</p>
-					</Grid.Column>
-					<Grid.Column>
-						<p>Weight: {selectedCharacter.mass}kg</p>
-					</Grid.Column>
-					<Grid.Column>
-						<p>Year Born: {selectedCharacter.birth_year}</p>
-					</Grid.Column>
+					<Grid.Column>Height: {selectedCharacter.height}m</Grid.Column>
+					<Grid.Column>Weight: {selectedCharacter.mass}kg</Grid.Column>
+					<Grid.Column>Year Born: {selectedCharacter.birth_year}</Grid.Column>
 				</Grid>
-				<Button
-					size="medium"
-					onClick={() => {
-						handleRemoveSelectedCharacter();
-					}}>
-					Return to character selection
-				</Button>
 			</Segment>
-			{/* <Segment>
-				<FilmList.js />
-			</Segment> */}
+			<Segment>
+				<FilmList />
+			</Segment>
+			<Button
+				attached
+				size="medium"
+				onClick={() => {
+					handleRemoveSelectedCharacter();
+				}}>
+				Return to character selection
+			</Button>
 		</div>
 	);
 };

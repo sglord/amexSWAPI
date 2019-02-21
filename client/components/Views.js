@@ -30,7 +30,12 @@ class Views extends Component {
 	}
 
 	render() {
-		const { characters, selectedCharacter, isLoading } = this.props;
+		const {
+			characters,
+			selectedCharacter,
+			loadingCharacter,
+			loadingFilm
+		} = this.props;
 
 		return (
 			<div>
@@ -45,8 +50,11 @@ class Views extends Component {
 						handleRemoveSelectedCharacter={this.handleRemoveSelectedCharacter}
 					/>
 				)}
-				<Dimmer active={isLoading}>
-					<Loader size="massive">Loading</Loader>
+				<Dimmer active={loadingCharacter}>
+					<Loader size="massive">Loading Characters...</Loader>
+				</Dimmer>
+				<Dimmer active={loadingFilm}>
+					<Loader size="massive">Loading films...</Loader>
 				</Dimmer>
 				<ErrorModal />
 			</div>
@@ -58,7 +66,8 @@ const mapStateToProps = state => {
 	return {
 		characters: state.characterReducer.characters,
 		selectedCharacter: state.characterReducer.selectedCharacter,
-		isLoading: state.characterReducer.isLoading,
+		loadingCharacter: state.characterReducer.isLoading,
+		loadingFilm: state.filmReducer.isLoading,
 		error: state.characterReducer.error
 	};
 };

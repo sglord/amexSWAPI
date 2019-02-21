@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCharacters } from '../store/characterReducer';
 import { Loader, Dimmer, Grid } from 'semantic-ui-react';
 
 import CharacterCard from './CharacterCard';
@@ -18,9 +17,8 @@ const CharacterList = props => {
 				columns={4}>
 				{characters.map(char => {
 					return (
-						<Grid.Column>
+						<Grid.Column key={char.id}>
 							<CharacterCard
-								key={char.id}
 								char={char}
 								handleCharacterCardClick={handleCharacterCardClick}
 							/>

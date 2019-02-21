@@ -1,19 +1,17 @@
 import axios from 'axios';
 import { grabIdFromUrl } from '../../helperFunctions';
 
-const GET_FILMS = 'GET_FILMS';
+const LOAD_FILMS = 'LOAD_FILMS';
 const FILM_SUCCESS = 'FILM_SUCCESS';
 const FILM_FAILURE = 'FILM_FAILURE';
 const REMOVE_FILMS = 'REMOVE_FILMS';
 
-const getFilm = () => ({
-	type: GET_FILMS,
-	isLoading: true
+const loadFilm = () => ({
+	type: LOAD_FILMS
 });
 
 const filmSuccess = films => ({
 	type: FILM_SUCCESS,
-	isLoading: false,
 	films
 });
 
@@ -29,14 +27,10 @@ export const removeFilm = () => ({
 });
 
 export const fetchCharacterFilms = charId => async dispatch => {
-	dispatch(getFilm());
+	dispatch(loadFilm());
 	try {
 		const { data } = await axios.get(`/api/characters/${charId}/films`);
-		let films = data.map(film => ({
-			...film,
-			id: grabIdFromUrl(film.url)
-		}));
-		dispatch(filmSuccess(films));
+		dispatch(filmSuccess(data));
 	} catch (error) {
 		dispatch(filmFailure(error));
 	}
@@ -49,17 +43,17 @@ let initialState = {
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case GET_FILMS:
-			return { isLoading: action.isLoading };
+		case LOAD_FILMS:
+			return { ...state, isLoading: true };
 		case FILM_SUCCESS:
 			return {
-				chracters: action.films,
-				isLoading: action.isLoading
+				...state,
+				films: action.films,
+				isLoading: false
 			};
 		case REMOVE_FILMS:
 			return [];
 		default:
-			w;
 			return state;
 	}
 }
