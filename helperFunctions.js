@@ -39,7 +39,6 @@ const getFilmData = async filmsArr => {
 	}
 };
 
-// this also accounts for other api routes that have double digit ids in them. This also allows the 'unknown' ID of obi wan to pass through without checks for number or not.
 const grabIdFromUrl = url => {
 	let slashIndex = url.slice(0, -1).lastIndexOf('/');
 	let id = url.substr(slashIndex + 1).slice(0, -1);
